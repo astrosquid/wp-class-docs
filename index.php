@@ -87,6 +87,12 @@
     <script type="text/javascript">
       $(".progress-bar").animate({width: "75%"}, 2000);
       
+      
+      function SomeName() {
+        $(".progress-bar").animate({width: 0}, 2000);
+      }
+      
+      setTimeout( SomeName, 1000);
     </script>
   </body>
 </html>
