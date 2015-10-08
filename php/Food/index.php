@@ -1,19 +1,29 @@
 <?php
+session_start();
     $name = 'Chris Bojemski';
     $message = "Welcome $name";
     
-    $person = array( 'Name' => $name, 'Age' => 38, CallorieGoal => 2000 );
+    $person = array( 'Name' => $name, 'Age' => 22, CallorieGoal => 2000 );
     
-    $food = array(
+    $food = $_SESSION['food'];
+    if(!$food) {
+      $_SESSION['food'] = $food = array(
         array( 'Name' => 'Breakfast', 'Time' => strtotime("-1 hour"), Callories => 400 ),
         array( 'Name' => 'Lunch', 'Time' => strtotime("now"), Callories => 800 ),
         array( 'Name' => 'Snack', 'Time' => strtotime("now + 1 hour"), Callories => 400 ),
         array( 'Name' => 'Dinner', 'Time' => strtotime("6pm"), Callories => 400 ),
-        );
+      );
+    }
+    
+        
+    $food[] = $_REQUEST;
+    
     $total = 0;
     foreach ($food as $meal) {
         $total += $meal['Callories'];
     }
+    
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -48,14 +58,14 @@
             </div>
       <div class="row">
         <div class="col-md-8 col-xs-10">
-            <a href="#" class="btn btn-success">
+            <a href="edit.php" class="btn btn-success">
                 <i class="glyphicon glyphicon-plus"></i>
                 New Record
             </a>
             <a href="#" class="btn btn-danger">
                 <i class="glyphicon glyphicon-trash"></i>
                 Delete All
-                <span class="badge">4</span>
+                <span class="badge"><?=count($food)?></span>
             </a>
             <table class="table table-condensed table-striped table-bordered table-hover">
               <thead>
@@ -69,7 +79,11 @@
               <tbody>
                 <?php foreach($food as $i => $meal): ?>
                 <tr>
-                  <th scope="row"><?=$i?></th>
+                  <th scope="row"><?=$i?>
+                    <div class="btn-group" role="group" aria-label="...">
+                      <a href="" title="View" class="btn btn-default"><i class="glyphicon glyph-eye-open"></i></a>  
+                    </div>
+                  </th>
                   <td><?=$meal['Name']?></td>
                   <td><?=date("M d Y  h:i:sa", $meal['Time'])?></td>
                   <td><?=$meal['Callories']?></td>
