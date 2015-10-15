@@ -25,7 +25,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Food Log: Edit</title>
+    <title>New Exercise Goal</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -36,7 +36,7 @@ session_start();
     <div class="container">
 
         <div class="page-header">
-          <h1>Food Intake <small>Record your daily meals</small></h1>
+          <h1>New Exercise Goal <small>Your daily workouts</small></h1>
         </div>
           <div class='alert alert-warning'>
             <button type="button" class="close" aria-label="Close">

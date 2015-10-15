@@ -6,18 +6,15 @@ session_start();
     $person = array( 'Name' => $name, 'Age' => 22, CallorieGoal => 2000 );
     
     $food = $_SESSION['food'];
-    if(!$food) {
+    if(!$food){
       $_SESSION['food'] = $food = array(
-        array( 'Name' => 'Breakfast', 'Time' => strtotime("-1 hour"), Callories => 400 ),
-        array( 'Name' => 'Lunch', 'Time' => strtotime("now"), Callories => 800 ),
-        array( 'Name' => 'Snack', 'Time' => strtotime("now + 1 hour"), Callories => 400 ),
-        array( 'Name' => 'Dinner', 'Time' => strtotime("6pm"), Callories => 400 ),
-      );
+          array( 'Name' => 'Breakfast', 'Time' => strtotime("-1 hour"), Callories => 400 ),
+          array( 'Name' => 'Lunch', 'Time' => strtotime("now"), Callories => 800 ),
+          array( 'Name' => 'Snack', 'Time' => strtotime("now + 1 hour"), Callories => 400 ),
+          array( 'Name' => 'Dinner', 'Time' => strtotime("6pm"), Callories => 400 ),
+          );
     }
-    
         
-    $food[] = $_REQUEST;
-    
     $total = 0;
     foreach ($food as $meal) {
         $total += $meal['Callories'];
@@ -67,6 +64,7 @@ session_start();
                 Delete All
                 <span class="badge"><?=count($food)?></span>
             </a>
+            <br />
             <table class="table table-condensed table-striped table-bordered table-hover">
               <thead>
                 <tr>
@@ -79,9 +77,11 @@ session_start();
               <tbody>
                 <?php foreach($food as $i => $meal): ?>
                 <tr>
-                  <th scope="row"><?=$i?>
+                  <th scope="row">
                     <div class="btn-group" role="group" aria-label="...">
-                      <a href="" title="View" class="btn btn-default"><i class="glyphicon glyph-eye-open"></i></a>  
+                      <a href="" title="View" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-eye-open"></i></a>
+                      <a href="edit.php?id=<?=$i?>" title="Edit" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-edit"></i></a>
+                      <a href="delete.php?id=<?=$i?>" title="Delete" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
                     </div>
                   </th>
                   <td><?=$meal['Name']?></td>
