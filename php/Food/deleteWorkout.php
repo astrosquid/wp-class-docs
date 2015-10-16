@@ -2,21 +2,12 @@
 session_start();
   $workout = $_SESSION['workout'];
   if($_POST){
-    if(isset($_GET['id'])){
-      $workout[$_GET['id']] = $_POST;
-    }else{
-      $workout[] = $_POST;
-    }
-    
+    unset($workout[$_POST['id']]);
     $_SESSION['workout'] = $workout;
     header('Location: ./midterm.php');
   }
-    
-  if(isset($_GET['id'])){
-    $exercise = $workout[$_GET['id']];
-  }else{
-    $exercise = array();
-  }
+  
+  $exercise = $workout[$_REQUEST['id']];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +16,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>New Exercise Goal</title>
+    <title>Edit Workout</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -36,39 +27,17 @@ session_start();
     <div class="container">
 
         <div class="page-header">
-          <h1>New Exercise Goal <small>Your daily workouts</small></h1>
+          <h1>Workout Plan <small>Delete an exercise</small></h1>
         </div>
         <form class="form-horizontal" action="" method="post" >
-          <div class='alert' style="display: none" id="myAlert">
+          <div class='alert alert-danger alert-block'  id="myAlert">
             <button type="button" class="close" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
-            <h3></h3>
+            <h3>Are you sure you want to delete <?=$exercise['Exercise']?></h3>
+            <input type="submit" value="Delete" class="btn btn-danger" />
+            <input type="hidden" name="id" value="<?=$_REQUEST['id']?>" />
           </div> 
-          <div class="form-group">
-            <label for="exName" class="col-sm-2 control-label">Exercise Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="exName" name="Name" placeholder="Exercise" value="<?=$exercise['Exercise']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="typeName" class="col-sm-2 control-label">Type</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="typeName" name="Name" placeholder="Usually Cardio or Strength" value="<?=$exercise['Type']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="txtReps">Reps or Time</label>
-            <div class="col-sm-10">
-                  <input type="number" class="form-control" id="txtReps" name="Reps" placeholder="If time, enter minutes"  value="<?=$exercise['Time/Reps']?>">
-            </div>
-          </div>
-          
-          <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-            </div>
-          </div>
         </form>
     </div>
 
@@ -80,7 +49,6 @@ session_start();
       (function($){
         $(function(){
           
-      
         });
       })(jQuery);
     </script>

@@ -48,19 +48,19 @@ session_start();
           <div class="form-group">
             <label for="exName" class="col-sm-2 control-label">Exercise Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="exName" name="Name" placeholder="Exercise" value="<?=$exercise['Exercise']?>">
+              <input type="text" class="form-control" id="exName" name="Exercise" placeholder="Exercise" value="<?=$exercise['Exercise']?>">
             </div>
           </div>
           <div class="form-group">
             <label for="typeName" class="col-sm-2 control-label">Type</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="typeName" name="Name" placeholder="Usually Cardio or Strength" value="<?=$exercise['Type']?>">
+              <input type="text" class="form-control" id="typeName" name="Type" placeholder="Usually Cardio or Strength" value="<?=$exercise['Type']?>">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label" for="txtReps">Reps or Time</label>
             <div class="col-sm-10">
-                  <input type="number" class="form-control" id="txtReps" name="Reps" placeholder="If time, enter minutes"  value="<?=$exercise['Time/Reps']?>">
+                  <input type="number" class="form-control" id="txtReps" name="Time/Reps" placeholder="If time, enter minutes"  value="<?=$exercise['Time/Reps']?>">
             </div>
           </div>
           

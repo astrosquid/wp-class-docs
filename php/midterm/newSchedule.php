@@ -1,21 +1,20 @@
 <?php
 session_start();
-  $workout = $_SESSION['workout'];
+  $schedule = $_SESSION['schedule'];
   if($_POST){
     if(isset($_GET['id'])){
-      $workout[$_GET['id']] = $_POST;
+      $schedule[$_GET['id']] = $_POST;
     }else{
-      $workout[] = $_POST;
+      $schedule[] = $_POST;
     }
     
-    $_SESSION['workout'] = $workout;
+    $_SESSION['schedule'] = $schedule;
     header('Location: ./midterm.php');
   }
     
   if(isset($_GET['id'])){
-    $exercise = $workout[$_GET['id']];
+    $activity = $schedule[$_GET['id']];
   }else{
-    $exercise = array();
   }
 ?>
 <!DOCTYPE html>
@@ -25,7 +24,7 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>New Exercise Goal</title>
+    <title>New Activity</title>
 
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -36,31 +35,25 @@ session_start();
     <div class="container">
 
         <div class="page-header">
-          <h1>New Exercise Goal <small>Your daily workouts</small></h1>
+          <h1>New Activity <small>Your daily plan</small></h1>
         </div>
         <form class="form-horizontal" action="" method="post" >
           <div class='alert' style="display: none" id="myAlert">
             <button type="button" class="close" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
+              <span aria-hidden="true">&times;</s>
             </button>
             <h3></h3>
           </div> 
           <div class="form-group">
-            <label for="exName" class="col-sm-2 control-label">Exercise Name</label>
+            <label for="actName" class="col-sm-2 control-label">Activity Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="exName" name="Name" placeholder="Exercise" value="<?=$exercise['Exercise']?>">
+              <input type="text" class="form-control" id="actName" name="Activity" placeholder="e.g. Sleep, Dinner, Walk the Dog" value="<?=$activity['Activity']?>">
             </div>
           </div>
           <div class="form-group">
-            <label for="typeName" class="col-sm-2 control-label">Type</label>
+            <label for="typeName" class="col-sm-2 control-label">Time</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="typeName" name="Name" placeholder="Usually Cardio or Strength" value="<?=$exercise['Type']?>">
-            </div>
-          </div>
-          <div class="form-group">
-            <label class="col-sm-2 control-label" for="txtReps">Reps or Time</label>
-            <div class="col-sm-10">
-                  <input type="number" class="form-control" id="txtReps" name="Reps" placeholder="If time, enter minutes"  value="<?=$exercise['Time/Reps']?>">
+              <input type="text" class="form-control" id="typeName" name="Time" placeholder="Format: Beginning HH:MM AM/PM" value="<?=$activity['Time']?>">
             </div>
           </div>
           

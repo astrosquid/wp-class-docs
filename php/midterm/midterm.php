@@ -10,7 +10,7 @@ session_start();
       if(!$workout){
         $_SESSION['workout'] = $workout = array(
           array( 'Exercise' => 'Curls', 'Type' => 'Strength', 'Time/Reps' => '20' ),
-          array( 'Exercise' => 'Slow Jog', 'Type' => 'Cardio', 'Time/Reps' => '30 min' ),
+          array( 'Exercise' => 'Slow Jog', 'Type' => 'Cardio', 'Time/Reps' => '30' ),
           array( 'Exercise' => 'Squats', 'Type' => 'Strength', 'Time/Reps' => '10' ),
           );
         }
@@ -64,21 +64,16 @@ session_start();
         <table class="table table-condensed table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Delete</th>
               <th>Exercise</th>
               <th>Type</th>
               <th>Time/Reps</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach($workout as $i=> $exercise): ?>
             <tr>
-              <th scope="row">
-                <div class="btn-group" role="group" aria-label="...">
-
-                  <a href="deleteWorkout.php?id=<?=$i?>" title="Delete" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
-                </div>
-              </th>
+              
               <td>
                 <?=$exercise[ 'Exercise']?>
               </td>
@@ -88,6 +83,12 @@ session_start();
               <td>
                 <?=$exercise[ 'Time/Reps']?>
               </td>
+              <th scope="row">
+                <div class="btn-group" role="group" aria-label="...">
+
+                  <a href="deleteWorkout.php?id=<?=$i?>" title="Delete" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+              </th>
             </tr>
             <?php endforeach; ?>
           </tbody>
@@ -98,14 +99,18 @@ session_start();
         <div class="alert alert-warning" role="alert">
           Make sure not to do the same strength exercises two days in a row!
         </div>
-
+      </div>
+      <div class="col-md-4 col-xs-10">
+        <div class="alert alert-warning" role="alert">
+          There should be a good mix of cardio- and strength-based exercises in any workout plan. 
+        </div>
       </div>
     </div>
     <!----------------------------------------------------->
     <div class="row">
       <div class="col-md-8 col-xs-10">
         <h2>Daily Plan</h2>
-        <a href="edit.php" class="btn btn-success">
+        <a href="newSchedule.php" class="btn btn-success">
           <i class="glyphicon glyphicon-plus"></i> New Record
         </a>
         <a href="#" class="btn btn-primary">
@@ -116,27 +121,27 @@ session_start();
         <table class="table table-condensed table-striped table-bordered table-hover">
           <thead>
             <tr>
-              <th>Delete</th>
               <th>Activity</th>
               <th>Time</th>
+              <th>Delete</th>
             </tr>
           </thead>
           <tbody>
             <?php foreach($schedule as $i=> $activity): ?>
             <tr>
-              <th scope="row">
-                <div class="btn-group" role="group" aria-label="...">
-
-
-                  <a href="delete.php?id=<?=$i?>" title="Delete" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
-                </div>
-              </th>
               <td>
                 <?=$activity[ 'Activity']?>
               </td>
               <td>
                 <?=$activity[ 'Time']?>
               </td>
+              <th scope="row">
+                <div class="btn-group" role="group" aria-label="...">
+
+
+                  <a href="deleteSchedule.php?id=<?=$i?>" title="Delete" class="btn btn-default btn-xs"><i class="glyphicon glyphicon-trash"></i></a>
+                </div>
+              </th>
             </tr>
             <?php endforeach; ?>
           </tbody>
@@ -146,6 +151,11 @@ session_start();
       <div class="col-md-4 col-xs-10">
         <div class="alert alert-warning" role="alert">
           You should get at least 8 hours of sleep every night.
+        </div>
+      </div>
+      <div class="col-md-4 col-xs-10">
+        <div class="alert alert-warning" role="alert">
+          Losing weight? Don't skip meals -- it only makes things difficult. 
         </div>
       </div>
     </div>
