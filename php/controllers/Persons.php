@@ -6,8 +6,8 @@ $format = isset($_REQUEST['format']) ? $_REQUEST['format'] : 'web';
 $view 	= null;
 switch ($action . '_' . $method) {
 	case 'create_GET':
-		$model = Food::Blank();
-		$view = "food/edit.php";
+		$model = Person::Blank();
+		$view = "persons/edit.php";
 		break;
 	case 'save_POST':
 			$sub_action = empty($_REQUEST['id']) ? 'created' : 'updated';
